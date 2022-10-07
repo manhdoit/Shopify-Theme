@@ -32,6 +32,31 @@
     endif
   -%}
   <div class="card-wrapper product-card-wrapper underline-links-hover">
+    <div class="card__badge product__badge p-absolute d-flex fd-column zi-1 hidden-empty">
+      {{product.compare_at_price}}
+      {%- if product.compare_at_price != null and product.compare_at_price > product.price -%}
+        <span class="badge badge--skew badge--sale badge--md d-inline-block fw-700">
+        {%- assign save_amount =  product.compare_at_price | minus: product.price | times: 1.0 | divided_by: product.compare_at_price | times: 100 | round -%}
+
+        {% if product.has_only_default_variant %}
+
+          
+          asdfasdf {{save_amount}}
+        {% else %}
+          {% assign save_amount = 0 %}
+          {% for variant in product.variants %}
+            {% assign saving = variant.compare_at_price | minus: variant.price | times: 1.0 | divided_by: variant.compare_at_price  | times: 100 | round %}
+            {% assign save_amount = saving | at_least: save_amount %}
+          {% endfor %}
+          {{save_amount}}
+          
+        {% endif %}
+      </span>
+      {%- endif -%}
+      {%- if product.available == false -%}
+        <span class="badge badge--skew badge--oos badge--md d-inline-block fw-700">{{ 'products.product.sold_out' | t }}</span>
+      {%- endif -%}
+    </div>
     <div
       class="
         card
