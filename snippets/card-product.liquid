@@ -44,7 +44,7 @@
             {% assign saving = variant.compare_at_price | minus: variant.price | times: 1.0 | divided_by: variant.compare_at_price | times: 100 | round %}
             {% assign save_amount = saving | at_least: save_amount %}
           {% endfor %}
-         asdfsdfsdfsdfasdfsdfsafsf {{ save_amount }}
+         save {{ save_amount }}%
         {% endif %}
       </span>
       {%- endif -%}
