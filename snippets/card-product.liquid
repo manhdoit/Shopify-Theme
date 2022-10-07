@@ -41,10 +41,10 @@
         {% else %}
           {% assign save_amount = 0 %}
           {% for variant in card_product.variants %}
-            {% assign saving = variant.compare_at_price | minus: variant.price | times: 1.0 | divided_by: variant.compare_at_price  | times: 100 | round %}
+            {% assign saving = variant.compare_at_price | minus: variant.price | times: 1.0 | divided_by: variant.compare_at_price | times: 100 | round %}
             {% assign save_amount = saving | at_least: save_amount %}
           {% endfor %}
-          {{save_amount}}
+         asdfsdfsdfsdfasdfsdfsafsf {{ save_amount }}
           
         {% endif %}
       </span>
