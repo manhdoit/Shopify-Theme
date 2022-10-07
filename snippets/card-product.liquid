@@ -38,13 +38,13 @@
         <span class="badge badge--skew badge--sale badge--md d-inline-block fw-700">
         {%- assign save_amount =  card_product.compare_at_price | minus: card_product.price | times: 1.0 | divided_by: card_product.compare_at_price | times: 100 | round -%}
 
-        {% if product.has_only_default_variant %}
+        {% if card_product.has_only_default_variant %}
 
           
           asdfasdf {{save_amount}}
         {% else %}
           {% assign save_amount = 0 %}
-          {% for variant in product.variants %}
+          {% for variant in card_product.variants %}
             {% assign saving = variant.compare_at_price | minus: variant.price | times: 1.0 | divided_by: variant.compare_at_price  | times: 100 | round %}
             {% assign save_amount = saving | at_least: save_amount %}
           {% endfor %}
